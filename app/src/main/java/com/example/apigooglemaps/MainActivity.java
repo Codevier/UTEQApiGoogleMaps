@@ -1,6 +1,5 @@
 package com.example.apigooglemaps;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 
 import android.graphics.Color;
@@ -12,12 +11,14 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 public class MainActivity extends FragmentActivity implements OnMapReadyCallback {
-    GoogleMap mapa;
+    GoogleMap QuevedoMap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,18 +31,63 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mapa=googleMap;
+        QuevedoMap=googleMap;
     }
 
     public  void cambiarvista(View view){
-        mapa.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-        mapa.getUiSettings().setZoomControlsEnabled(true);
+        QuevedoMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+        QuevedoMap.getUiSettings().setZoomControlsEnabled(true);
     }
 
-    public  void irUTEQ(View view){
-       //-1.012733, -79.469495
-        CameraUpdate camUpd1 = CameraUpdateFactory.newLatLngZoom(new LatLng(-1.012733, -79.469495), 18);
-        mapa.moveCamera(camUpd1);
+    public  void vistaHybrid(View view){
+        QuevedoMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        QuevedoMap.getUiSettings().setZoomControlsEnabled(true);
+    }
+
+    public  void vistaTerrain(View view){
+        QuevedoMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+        QuevedoMap.getUiSettings().setZoomControlsEnabled(true);
+    }
+
+    public void moverCamara(View view){
+        CameraUpdate camUpd1 = CameraUpdateFactory.newLatLngZoom(new LatLng(-1.012733, -79.469495), 20);
+        QuevedoMap.moveCamera(camUpd1);
+    }
+
+    public  void poligono(View view){
+
+
+
+        Marker m,m2,m3,m4,m5,m6,m7,m8,m9, m10;
+        m = QuevedoMap.addMarker(new MarkerOptions().position(new LatLng(-1.012234, -79.470117)).title("Facultad de Ciencias Empresariales"));
+        m.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.facultad));
+
+        m2 = QuevedoMap.addMarker(new MarkerOptions().position(new LatLng(-1.012884, -79.469491)).title("Facultad de Ciencias Agrarias"));
+        m2.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.facultad));
+
+        m3 = QuevedoMap.addMarker(new MarkerOptions().position(new LatLng(-1.012591, -79.470419)).title("Facultad de Ciencias de la Ingeniería"));
+        m3.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.facultad));
+
+        m4 = QuevedoMap.addMarker(new MarkerOptions().position(new LatLng(-1.012685, -79.471083)).title("Facultad de Ciencias Ambientales"));
+        m4.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.facultad));
+
+        m5 = QuevedoMap.addMarker(new MarkerOptions().position(new LatLng(-1.012384, -79.468444)).title("Biblioteca"));
+        m5.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.facultad));
+
+        m6 = QuevedoMap.addMarker(new MarkerOptions().position(new LatLng(-1.012384, -79.468444)).title("Unidad de Posgrado"));
+        m6.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.facultad));
+
+        m7 = QuevedoMap.addMarker(new MarkerOptions().position(new LatLng(-1.012240, -79.469018)).title("Centro Médico"));
+        m7.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.facultad));
+
+        m8 = QuevedoMap.addMarker(new MarkerOptions().position(new LatLng(-1.012272, -79.468787)).title("Edificio Administrativo"));
+        m8.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.facultad));
+
+        m9 = QuevedoMap.addMarker(new MarkerOptions().position(new LatLng(-1.013074, -79.469622)).title("Gimnasio"));
+        m9.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.gym));
+
+        m10 = QuevedoMap.addMarker(new MarkerOptions().position(new LatLng(-1.012240, -79.469672)).title("Instituto de Informática"));
+        m10.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.facultad));
 
         PolylineOptions lineas = new PolylineOptions()
                 .add(new LatLng(-1.012009, -79.471877))
@@ -49,44 +95,9 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                 .add(new LatLng(-1.013564, -79.467167))
                 .add(new LatLng(-1.013318, -79.471888))
                 .add(new LatLng(-1.012009, -79.471877));
-                lineas.width(8);
-                lineas.color(Color.MAGENTA);
-                mapa.addPolyline(lineas);
-
-        LatLng punto;
-        //1
-        punto = new LatLng(-1.012234, -79.470117);//FCE
-        mapa.addMarker(new MarkerOptions().position(punto).title("Facultad de Ciencias Empresariales"));
-        //2
-        punto = new LatLng(-1.012567, -79.470525);
-        mapa.addMarker(new MarkerOptions().position(punto).title("Facultad de Ciencias de la Ingeniería"));
-        //3
-        punto = new LatLng(-1.012685, -79.471083);
-        mapa.addMarker(new MarkerOptions().position(punto).title("Facultad de Ciencias Ambientales"));
-        //4
-        punto = new LatLng(-1.012240, -79.469672);
-        mapa.addMarker(new MarkerOptions().position(punto).title("Instituto de Informática"));
-        //5
-        punto = new LatLng(-1.012384, -79.468444);
-        mapa.addMarker(new MarkerOptions().position(punto).title("Biblioteca"));
-        //6
-        punto = new LatLng(-1.012894, -79.469377);
-        mapa.addMarker(new MarkerOptions().position(punto).title("Facultad de Ciencias Agrarias"));
-        //7
-        punto = new LatLng(-1.012218, -79.469281);
-        mapa.addMarker(new MarkerOptions().position(punto).title("Unidad de Posgrado"));
-        //8
-        punto = new LatLng(-1.012240, -79.469018);
-        mapa.addMarker(new MarkerOptions().position(punto).title("Centro Médico"));
-        //9
-        punto = new LatLng(-1.012272, -79.468787);
-        mapa.addMarker(new MarkerOptions().position(punto).title("Edificio Administrativo"));
-        //10
-        punto = new LatLng(-1.012926, -79.467720);
-        mapa.addMarker(new MarkerOptions().position(punto).title("Auditorio"));
+        lineas.width(8);
+        lineas.color(Color.GREEN);
+        QuevedoMap.addPolyline(lineas);
 
     }
-
-
-
 }

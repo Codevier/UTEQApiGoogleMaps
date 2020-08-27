@@ -16,26 +16,48 @@
         android:name="com.google.android.gms.maps.SupportMapFragment" />
 
     <Button
+        android:id="@+id/btnirUteq"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_toStartOf="@+id/btnPoligono"
+        android:onClick="moverCamara"
+        android:text="UTEQ" />
+
+    <Button
         android:id="@+id/btnVista"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
-        android:layout_toStartOf="@+id/btnUTEQ"
+        android:layout_toStartOf="@+id/btnirUteq"
         android:onClick="cambiarvista"
-        android:text="Vista" />
+        android:text="Vista Satelital" />
 
     <Button
-        android:id="@+id/btnUTEQ"
+        android:id="@+id/btnPoligono"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="20dp"
-        android:onClick="irUTEQ"
-        android:text="UTEQ" />
+        android:onClick="poligono"
+        android:text="Poligono" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="78dp"
+        android:layout_marginEnd="21dp"
+        android:onClick="vistaHybrid"
+        android:text="VISTA HIBRIDA" />
 
 
 </RelativeLayout>
